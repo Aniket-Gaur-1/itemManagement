@@ -1,0 +1,12 @@
+.item-details {
+    padding: 20px;
+}
+
+.item-details h2 {
+    margin-bottom: 20px;
+}
+
+.item-details p {
+    font-size: 1.1em;
+    color: #333;
+}
