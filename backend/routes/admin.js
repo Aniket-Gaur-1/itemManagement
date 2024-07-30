@@ -1,9 +1,9 @@
-// routes/admin.js
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 const router = express.Router();
 
+// POST /signup - Create a new admin
 router.post('/signup', async(req, res) => {
     const { username, password } = req.body;
     try {
@@ -15,6 +15,7 @@ router.post('/signup', async(req, res) => {
     }
 });
 
+// POST /login - Authenticate admin and return a JWT
 router.post('/login', async(req, res) => {
     const { username, password } = req.body;
     try {
@@ -22,7 +23,7 @@ router.post('/login', async(req, res) => {
         if (!admin || !(await admin.comparePassword(password))) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
-        const token = jwt.sign({ id: admin._id }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
     } catch (error) {
         res.status(500).json({ error: 'Error logging in' });

@@ -57,7 +57,7 @@ router.delete('/items/:id', async(req, res) => {
     }
 });
 
-//  get item by ID
+// Middleware to get item by ID
 async function getItem(req, res, next) {
     let item;
     try {
