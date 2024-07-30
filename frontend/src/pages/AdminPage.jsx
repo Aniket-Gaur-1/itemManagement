@@ -12,7 +12,9 @@ function AdminPage() {
   useEffect(() => {
     async function fetchItems() {
       try {
-        const response = await axios.get("http://localhost:5000/api/items");
+        const response = await axios.get(
+          "https://itemmanagement-backend.onrender.com/api/items"
+        );
         setItems(response.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -24,7 +26,7 @@ function AdminPage() {
   const handleCreate = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/items",
+        "https://itemmanagement-backend.onrender.com/api/items",
         newItem
       );
       setItems([...items, response.data]);
@@ -36,7 +38,9 @@ function AdminPage() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(
+        `https://itemmanagement-backend.onrender.com/api/items/${id}`
+      );
       setItems(items.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -51,7 +55,7 @@ function AdminPage() {
     if (!editingItem) return;
     try {
       await axios.put(
-        `http://localhost:5000/api/items/${editingItem._id}`,
+        `https://itemmanagement-backend.onrender.com/api/items/${editingItem._id}`,
         editingItem
       );
       setItems(

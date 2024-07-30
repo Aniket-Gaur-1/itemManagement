@@ -32,7 +32,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/user" element={<UserPage />} />
+        <Route path="/" element={<UserPage />} />
         <Route
           path="/admin/login"
           element={
