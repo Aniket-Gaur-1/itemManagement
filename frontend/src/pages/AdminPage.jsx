@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./AdminPage.css";
 
 function AdminPage() {
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({ name: "", description: "" });
   const [editingItem, setEditingItem] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchItems() {
@@ -61,9 +63,17 @@ function AdminPage() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    navigate("/admin/login");
+  };
+
   return (
     <div className="admin-page">
       <h2>Admin Dashboard</h2>
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
       <div className="create-item">
         <h3>Create New Item</h3>
         <input

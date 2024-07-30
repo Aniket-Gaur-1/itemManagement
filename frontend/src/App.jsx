@@ -6,20 +6,22 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./component/Navbar";
-import HomePage from "./component/ItemList";
 import AdminPage from "./pages/AdminPage";
 import UserPage from "./component/UserPage";
 import AdminLogin from "./AdminLogin";
 import AdminSignup from "./AdminSignup";
+import ItemDetails from "./component/ItemDetails"; // Import ItemDetails component
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [token, setToken] = useState(
+    localStorage.getItem("adminToken") || null
+  );
   const [adminCredentials, setAdminCredentials] = useState(
     JSON.parse(localStorage.getItem("adminCredentials")) || {}
   );
 
   useEffect(() => {
-    localStorage.setItem("token", token);
+    localStorage.setItem("adminToken", token);
   }, [token]);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/user" element={<UserPage />} />
         <Route
           path="/admin/login"
           element={
@@ -44,11 +46,11 @@ function App() {
           path="/admin/signup"
           element={<AdminSignup setAdminCredentials={setAdminCredentials} />}
         />
-        <Route path="/user" element={<UserPage />} />
         <Route
           path="/admin"
           element={token ? <AdminPage /> : <Navigate to="/admin/login" />}
         />
+        <Route path="/item/:id" element={<ItemDetails />} />
       </Routes>
     </Router>
   );
