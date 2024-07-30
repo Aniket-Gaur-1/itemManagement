@@ -6,11 +6,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./component/Navbar";
+
 import AdminPage from "./pages/AdminPage";
 import UserPage from "./component/UserPage";
 import AdminLogin from "./AdminLogin";
 import AdminSignup from "./AdminSignup";
-import ItemDetails from "./component/ItemDetails"; // Import ItemDetails component
 
 function App() {
   const [token, setToken] = useState(
@@ -46,11 +46,11 @@ function App() {
           path="/admin/signup"
           element={<AdminSignup setAdminCredentials={setAdminCredentials} />}
         />
+
         <Route
           path="/admin"
           element={token ? <AdminPage /> : <Navigate to="/admin/login" />}
         />
-        <Route path="/item/:id" element={<ItemDetails />} />
       </Routes>
     </Router>
   );
