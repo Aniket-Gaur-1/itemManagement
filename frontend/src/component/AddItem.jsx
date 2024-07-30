@@ -9,13 +9,10 @@ function AddItem() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://itemmanagement-backend.onrender.com/api/items",
-        {
-          name,
-          description,
-        }
-      );
+      await axios.post("https://itemmanagement-backend.onrender.com", {
+        name,
+        description,
+      });
       setName("");
       setDescription("");
       alert("Item added successfully");

@@ -13,7 +13,7 @@ function UserPage() {
   const fetchItems = async () => {
     try {
       const response = await axios.get(
-        "https://itemmanagement-backend.onrender.com/api/items"
+        "https://itemmanagement-backend.onrender.com"
       );
       setItems(response.data);
     } catch (error) {
