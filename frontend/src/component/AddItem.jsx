@@ -9,7 +9,7 @@ function AddItem() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://itemmanagement-backend.onrender.com", {
+      await axios.post("https://itemmanagement-back.onrender.com", {
         name,
         description,
       });

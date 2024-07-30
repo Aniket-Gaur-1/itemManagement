@@ -13,7 +13,7 @@ function AdminPage() {
     async function fetchItems() {
       try {
         const response = await axios.get(
-          "https://itemmanagement-backend.onrender.com"
+          "https://itemmanagement-back.onrender.com"
         );
         setItems(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ function AdminPage() {
   const handleCreate = async () => {
     try {
       const response = await axios.post(
-        "https://itemmanagement-backend.onrender.com",
+        "https://itemmanagement-back.onrender.com",
         newItem
       );
       setItems([...items, response.data]);
@@ -38,7 +38,7 @@ function AdminPage() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://itemmanagement-backend.onrender.com/${id}`);
+      await axios.delete(`https://itemmanagement-back.onrender.com/${id}`);
       setItems(items.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -53,7 +53,7 @@ function AdminPage() {
     if (!editingItem) return;
     try {
       await axios.put(
-        `https://itemmanagement-backend.onrender.com/${editingItem._id}`,
+        `https://itemmanagement-back.onrender.com/${editingItem._id}`,
         editingItem
       );
       setItems(
